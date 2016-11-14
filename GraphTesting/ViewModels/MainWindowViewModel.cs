@@ -19,27 +19,19 @@ namespace GraphTesting.ViewModels
     [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : PropertyChangedBase
     {
-        public ObservableCollection<Point> values { get; set; }
-        //public EnumerableDataSource<Tuple<DateTime,int>> s { get; set; }
         public ObservableDataSource<Point> s { get; set; }
+        public MTObservableCollection<Point> ExampleCollection { get; set; }
         public ObservableDataSource<Point> ss { get; set; }
-        //public BindableCollection<Point> ss { get; set; }
         Thread thread;
         double a, b;
         int i;
         bool plus;
         Dispatcher disp;
         private int counter;
-        private object obj;
 
         [ImportingConstructor]
         public MainWindowViewModel(IEventAggregator ev)
         {
-            values = new ObservableCollection<Point>();
-            values.Add(new Point(1,1));
-            values.Add(new Point(2, 2));
-            values.Add(new Point(3, 3));
-
             Adding = true;
 
             a = 5;
@@ -47,12 +39,11 @@ namespace GraphTesting.ViewModels
 
             disp = Dispatcher.CurrentDispatcher;
 
-            List<int> i = new List<int>();
-            i.Add(1);
-            i.Add(2);
-            i.Add(3);
-
-            s = new ObservableDataSource<Point>();
+            ExampleCollection = new MTObservableCollection<Point>();
+            ExampleCollection.Add(new Point(1, 1));
+            ExampleCollection.Add(new Point(2, 2));
+            ExampleCollection.Add(new Point(3, 3));
+            ExampleCollection.Add(new Point(5, 5));
 
             ss = new ObservableDataSource<Point>();
             ss.AppendAsync(disp, new Point(1, 1));
@@ -60,22 +51,15 @@ namespace GraphTesting.ViewModels
             ss.AppendAsync(disp, new Point(3, 3));
             ss.AppendAsync(disp, new Point(5, 5));
 
-
-            s.AppendAsync(disp, new Point(2, 1));
-            s.AppendAsync(disp, new Point(3, 2));
-            s.AppendAsync(disp, new Point(4, 3));
-            s.AppendAsync(disp, new Point(6, 5));
-
-            thread = new Thread(new ThreadStart(gogogo));
+            thread = new Thread(new ThreadStart(AddPoints));
             thread.IsBackground = true;
             thread.Start();
-
-            NotifyOfPropertyChange("s");
         }
 
-        void gogogo()
+        //The exception is not in the ViewModel code. I found it by looking at ItemsSource property of the chart from the UI thread autos
+
+        void AddPoints()  // Adds new points to the collection
         {
-            //Thread.Sleep(5000);
             counter = 0;
             while (true)
             {
@@ -88,9 +72,7 @@ namespace GraphTesting.ViewModels
                     i = i + (plus ? 1 : -1);
                     a+=0.3 ;
                     b += i;
-                    s.AppendAsync(disp, new Point(a, b * 100));
-                    ss.AppendAsync(disp, new Point(a, -b));
-                    //ss.Add(new Point(a, -b));
+                    ExampleCollection.Add(new Point(a, -b));
                     counter++;
                     if (counter < 350)
                     {
@@ -100,7 +82,6 @@ namespace GraphTesting.ViewModels
                     {
                         Thread.Sleep(30);
                     }
-                    NotifyOfPropertyChange("ss");
                 }
             }
         }
