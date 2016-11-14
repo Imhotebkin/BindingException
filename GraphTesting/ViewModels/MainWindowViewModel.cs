@@ -54,53 +54,21 @@ namespace GraphTesting.ViewModels
 
             s = new ObservableDataSource<Point>();
 
-
-            //for (int j = 0; j< 3; j++)
-            //{ 
-            //    //h.Add(new Tuple<DateTime,int>(f[j], i[j]));
-            //    s.AppendAsync(disp, new Point((double)j+1, (double)j+1));
-            //}
-
-            //s = new EnumerableDataSource<Tuple<DateTime, int>>(h);
-
-            //s.SetXMapping(ci => (double)ci.Item1.ToOADate());
-            //s.SetYMapping(ci => (double)ci.Item2);
-
-            //s = new ObservableDataSource<Point>();
-            //s.AppendAsync(disp, new Point(1, 100));
-            //s.AppendAsync(disp, new Point(2, 200));
-            //s.AppendAsync(disp, new Point(3, 300));
-            //s.AppendAsync(disp, new Point(5, 500));
-
             ss = new ObservableDataSource<Point>();
             ss.AppendAsync(disp, new Point(1, 1));
             ss.AppendAsync(disp, new Point(2, 2));
             ss.AppendAsync(disp, new Point(3, 3));
             ss.AppendAsync(disp, new Point(5, 5));
 
-            //ss = new BindableCollection<Point>();
- 
-            //ss.Add(new Point(1, 1));
-            //ss.Add(new Point(2, 2));
-           // ss.Add(new Point(3, 3));
-           // ss.Add(new Point(5, 5));
 
             s.AppendAsync(disp, new Point(2, 1));
             s.AppendAsync(disp, new Point(3, 2));
             s.AppendAsync(disp, new Point(4, 3));
             s.AppendAsync(disp, new Point(6, 5));
 
-            //s.SetXYMapping(p => p);
-
-            //ss.SetXYMapping(p=>new Point(p.X+1,((p.Y)*(50-0)/(5-0))));
-            //obj = new object();
-
-            //BindingOperations.EnableCollectionSynchronization(ss, obj);
-
             thread = new Thread(new ThreadStart(gogogo));
             thread.IsBackground = true;
             thread.Start();
-
 
             NotifyOfPropertyChange("s");
         }
@@ -113,20 +81,6 @@ namespace GraphTesting.ViewModels
             {
                 if (Adding)
                 {
-                    //if (s.Collection.Count > 5000)
-                    //{
-                    //    int pos = s.Collection.Count / 2;
-                    //    for (int j = 0; j < pos; j++)
-                    //    {
-                    //        if (j % 2 == 0)
-                    //        {
-                    //            s.Collection.RemoveAt(j);
-                    //            ss.Collection.RemoveAt(j);
-                    //        }
-                    //    }
-                    //}
-                    //else
-                    //{
                     if (i > 50)
                         plus = false;
                     if (i < -50)
@@ -147,7 +101,6 @@ namespace GraphTesting.ViewModels
                         Thread.Sleep(30);
                     }
                     NotifyOfPropertyChange("ss");
-                    //}
                 }
             }
         }
