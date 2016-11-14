@@ -12,6 +12,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         Title="This looks like shit" WindowState="Maximized">
     <Grid>        
+        <!--This is from the Future of dynamic data display library-->
         <d3:ChartPlotter IsManipulationEnabled="True"  LegendVisible="False" Name="plotter">  
             <df:LineChart Name="Chart" Stroke="Red" ItemsSource="{Binding ss, Mode=OneWay}"/>
             <!--<d3:LineGraph Name="ChartThree" StrokeThickness="2" DataSource="{Binding s}" Stroke="Blue"/>

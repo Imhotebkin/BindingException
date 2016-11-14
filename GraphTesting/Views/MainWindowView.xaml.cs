@@ -43,7 +43,6 @@ namespace GraphTesting.Views
             InitializeComponent();
             obj = new object();
             
-            //BindingOperations.EnableCollectionSynchronization(data, obj);
             Loaded += new RoutedEventHandler(Window1_Loaded);
             plotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
             //dependentPlotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
@@ -58,33 +57,6 @@ namespace GraphTesting.Views
             thread.IsBackground = true;
             thread.Start();
 
-            //var rpms = Enumerable.Range(0, 9).Select(i => i * 1000.0);
-            //var hps = new double[] { 0, 24, 52, 74, 98, 112, 124, 122, 116 };
-
-            //var horsePowersDS = DataSource.Create(rpms, hps);
-            //// shown at main ChartPlotter
-            //var hpsLine = plotter.AddLineChart(horsePowersDS).
-            //    WithStroke(Brushes.Red).
-            //    WithStrokeThickness(2).
-            //    WithDescription("HP per RPM");
-
-            //var torque = new double[] { 0, 22, 45, 54, 58, 55, 50, 47, 45 };
-            //var torqueDS = DataSource.Create(rpms, torque);
-
-            //// shown at inner InjectedPlotter
-            //var line = innerPlotter.AddLineChart(torqueDS).
-            //    WithStroke(Brushes.Blue).
-            //    WithStrokeThickness(2).
-            //    WithDescription("Torque per RPM");
-
-            //var values = new double[] { 10, 9, 7, 8, 5, 6, 4, 3, 2, 1 };
-            //var valuesDS = DataSource.Create(rpms, values);
-
-            //// shown at inner DependentPlotter
-            //dependentPlotter.AddLineChart(valuesDS).
-            //    WithStroke(Brushes.LawnGreen).
-            //    WithStrokeThickness(2).
-            //    WithDescription("Some fake values");
         }
         public void gogogo()
         {
@@ -119,9 +91,6 @@ namespace GraphTesting.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Chart.StrokeThickness = 3;
-            //ChartTwo.StrokeThickness = 3;
-            //ChartThree.StrokeThickness = 3;
         }
     }
 }
