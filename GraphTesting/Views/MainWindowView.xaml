@@ -15,13 +15,13 @@
         <!--This is from the Future of dynamic data display library-->
         <d3:ChartPlotter IsManipulationEnabled="True"  LegendVisible="False" Name="plotter">  
             <df:LineChart Name="Chart" Stroke="Red" ItemsSource="{Binding ss, Mode=OneWay}"/>
-            <!--<d3:LineGraph Name="ChartThree" StrokeThickness="2" DataSource="{Binding s}" Stroke="Blue"/>
+            <d3:LineGraph Name="ChartThree" StrokeThickness="2" DataSource="{Binding s}" Stroke="Blue"/>
             <d3:DependentPlotter IsManipulationEnabled="True"  Name="dependentPlotter">
                 <d3:VerticalAxis Placement="Right" Background="#33554433"/>
                 <d3:VerticalAxisTitle Content="Torque" Placement="Right"/>
                 <d3:HorizontalAxis Placement="Bottom" Background="#33554433"/>
                 <d3:LineGraph Name="ChartTwo" StrokeThickness="3" DataSource="{Binding ss}" Stroke="Red"></d3:LineGraph>
-            </d3:DependentPlotter>-->
+            </d3:DependentPlotter>
         </d3:ChartPlotter>
         <CheckBox x:Name="Adding" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,55,55">Adding</CheckBox>
         <Button Height="20" Width="50" Click="Button_Click">Break</Button>

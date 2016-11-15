@@ -46,18 +46,6 @@
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamicDataDisplay, Version=0.3.2.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DynamicDataDisplay.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamicDataDisplay.Markers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DynamicDataDisplay.Markers.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamicDataDisplay.Markers2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DynamicDataDisplay.Markers2.dll</HintPath>
-    </Reference>
     <Reference Include="Parser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Parser.dll</HintPath>
@@ -139,7 +127,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\git\d3future-399ef19cd344\d3future_399ef19cd344\Main\src\DynamicDataDisplay.Markers2\DynamicDataDisplay.Markers2.csproj">
+      <Project>{683a67b5-9c1a-4b8c-9514-edc0b9fcf31f}</Project>
+      <Name>DynamicDataDisplay.Markers2</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\git\d3future-399ef19cd344\d3future_399ef19cd344\Main\src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj">
+      <Project>{a5eb794c-7c62-4a0c-a441-acf7d4074c5d}</Project>
+      <Name>DynamicDataDisplay.Markers</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\git\d3future-399ef19cd344\d3future_399ef19cd344\Main\src\DynamicDataDisplay\DynamicDataDisplay.csproj">
+      <Project>{ecd37682-df7e-409f-912d-0965634556b5}</Project>
+      <Name>DynamicDataDisplay</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

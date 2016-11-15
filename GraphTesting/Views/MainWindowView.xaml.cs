@@ -45,7 +45,10 @@ namespace GraphTesting.Views
             
             Loaded += new RoutedEventHandler(Window1_Loaded);
             plotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
-            //dependentPlotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
+            dependentPlotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
+            plotter.UseLayoutRounding = true ;
+            plotter.Viewport.UseApproximateContentBoundsComparison = false;
+            dependentPlotter.Viewport.UseApproximateContentBoundsComparison = false;
         }
 
         private void Window1_Loaded(object sender, RoutedEventArgs e)
