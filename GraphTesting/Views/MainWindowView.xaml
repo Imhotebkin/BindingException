@@ -4,27 +4,20 @@
         xmlns:model="clr-namespace:GraphTesting.ViewModels"
         xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
 		xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"        
-		xmlns:df="http://research.microsoft.com/DynamicDataDisplay/1.1"
-        
+		xmlns:df="http://research.microsoft.com/DynamicDataDisplay/1.1"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"   
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:GraphTesting"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="This looks like shit" WindowState="Maximized">
+        Title="This looks like shit" WindowState="Maximized"
+        DataContext="{Binding model:MainWindowViewModel}">
     <Grid>        
         <!--This is from the Future of dynamic data display library-->
-        <d3:ChartPlotter IsManipulationEnabled="True"  LegendVisible="False" Name="plotter">  
-            <df:LineChart Name="Chart" Stroke="Red" ItemsSource="{Binding ss, Mode=OneWay}"/>
-            <d3:LineGraph Name="ChartThree" StrokeThickness="2" DataSource="{Binding s}" Stroke="Blue"/>
-            <d3:DependentPlotter IsManipulationEnabled="True"  Name="dependentPlotter">
-                <d3:VerticalAxis Placement="Right" Background="#33554433"/>
-                <d3:VerticalAxisTitle Content="Torque" Placement="Right"/>
-                <d3:HorizontalAxis Placement="Bottom" Background="#33554433"/>
-                <d3:LineGraph Name="ChartTwo" StrokeThickness="3" DataSource="{Binding ss}" Stroke="Red"></d3:LineGraph>
-            </d3:DependentPlotter>
+        <d3:ChartPlotter LegendVisible="False" Name="plotter">
+            <df:LineChart Name="Chart" Stroke="Red"/> <!--The binding of this control raises the thread access exception. As a xaml exception it does not stop the program-->
         </d3:ChartPlotter>
-        <CheckBox x:Name="Adding" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,55,55">Adding</CheckBox>
-        <Button Height="20" Width="50" Click="Button_Click">Break</Button>
-        <ListBox ItemsSource="{Binding ss}" Width="100" Height="50" HorizontalAlignment="Right"></ListBox>
+        <CheckBox x:Name="Adding" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,55,55">Adding</CheckBox> <!--CheckBox for new point generation-->
+        <Button Height="20" Width="50" Click="Button_Click">Break</Button>  <!--Break button so that we break in UI thread-->
+        <ListBox Name="Listbox" ScrollViewer.PanningMode="VerticalOnly" Width="100" Height="200" HorizontalAlignment="Right"></ListBox> <!--Observable collection output-->
     </Grid>
 </Window>

@@ -28,72 +28,27 @@ namespace GraphTesting.Views
     /// </summary>
     public partial class MainWindowView : Window
     {
-        ObservableCollection<Point> data;
-        private int counter;
-        private bool plus;
-        private double a;
-        private double b;
-        private int i;
-        private Thread thread;
-
-        public object obj; 
 
         public MainWindowView()
         {           
             InitializeComponent();
-            obj = new object();
-            
-            Loaded += new RoutedEventHandler(Window1_Loaded);
-            plotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
-            dependentPlotter.Viewport.FitToViewConstraints.Add(new FollowWidthConstraint(100));
-            plotter.UseLayoutRounding = true ;
-            plotter.Viewport.UseApproximateContentBoundsComparison = false;
-            dependentPlotter.Viewport.UseApproximateContentBoundsComparison = false;
-        }
-
-        private void Window1_Loaded(object sender, RoutedEventArgs e)
-        {
-            Chart.StrokeThickness = 3;
-            //data = new ObservableCollection<Point>();
-            Chart.ItemsSource = data;
-            thread = new Thread(new ThreadStart(gogogo));
-            thread.IsBackground = true;
-            thread.Start();
-
-        }
-        public void gogogo()
-        {
-            //Thread.Sleep(5000);
-            //data = new ObservableCollection<Point>();
-            //data.Add(new Point(1, 1));
-            //data.Add(new Point(2, 2));
-            //data.Add(new Point(3, 3));
-            //data.Add(new Point(5, 5));
-            counter = 0;
-            while (true)
-            {
-                if (i > 50)
-                    plus = false;
-                if (i < -50)
-                    plus = true;
-                i = i + (plus ? 1 : -1);
-                a += 0.3;
-                b += i;
-                //data.Add(new Point(a, -b));
-                counter++;
-                if (counter < 350)
-                {
-                    Thread.Sleep(30);
-                }
-                else
-                {
-                    Thread.Sleep(30);
-                }
-            }
+            Loaded += new RoutedEventHandler(Window_Loaded);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Chart.StrokeThickness = 3;
+            Chart.SetBinding(LineChart.ItemsSourceProperty, new Binding("ExampleCollection")); //doesn't work
+            Listbox.SetBinding(ListBox.ItemsSourceProperty, new Binding("ExampleCollection")); //works
+        }
+// Looking at the code of the base class for the LineChart (https://d3future.codeplex.com/SourceControl/latest#Main/src/DynamicDataDisplay.Markers2/PointChartBase.cs)
+// the ItemsSourceProperty is just a regular Dependency property and should work like everything else
+// Even though I turned all exceptions to break I still can't manage to catch it. Probably because it happens inside a dll.
+// When I made the question I saw the exception when I was looking at the autos in the LineChasrt.base.base.ItemsSource. In the value was the exception. 
+// I saw it when I breaked in the Window_Loaded. But for some reason I can not reproduce that now:/
     }
 }
